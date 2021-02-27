@@ -107,11 +107,11 @@ Checkout - Nante Footwear
                             <div class="order-total">
                                 <ul class="order-table">
                                     <li>Product <span>Total</span></li>
-                                    <li class="fw-normal">Combination x 1 <span>$60.00</span></li>
-                                    <li class="fw-normal">Combination x 1 <span>$60.00</span></li>
-                                    <li class="fw-normal">Combination x 1 <span>$120.00</span></li>
-                                    <li class="fw-normal">Subtotal <span>$240.00</span></li>
-                                    <li class="total-price">Total <span>$240.00</span></li>
+                                    {% for item in items %}
+                                    <li class="fw-normal">{{ item.product.name }} x {{ item.quantity }} <span>GHC{{ item.get_total|floatformat:2 }}</span></li>
+                                    {% endfor %}
+                                    <li class="fw-normal">Subtotal <span>GHC{{ order.get_cart_total|floatformat:2 }}</span></li>
+                                    <li class="total-price">Total <span>GHC{{ order.get_cart_total|floatformat:2 }}</span></li>
                                 </ul>
                                 <div class="payment-check">
                                     <div class="pc-item">
