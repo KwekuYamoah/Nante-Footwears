@@ -17,9 +17,9 @@
                     <a href="#" class="login-panel"><i class="fa fa-user"></i>Login</a>
                     <div class="lan-selector">
                         <select class="language_drop" name="countries" id="countries" style="width:300px;">
-                            <option value='yt' data-image="img/flag-1.jpg" data-imagecss="flag yt"
+                            <option value='yt' data-image="../img/flag-1.jpg" data-imagecss="flag yt"
                                 data-title="English">English</option>
-                            <option value='yu' data-image="img/flag-2.jpg" data-imagecss="flag yu"
+                            <option value='yu' data-image="../img/flag-2.jpg" data-imagecss="flag yu"
                                 data-title="Bangladesh">German </option>
                         </select>
                     </div>
@@ -38,7 +38,7 @@
                     <div class="col-lg-2 col-md-2">
                         <div class="logo">
                             <a href="./index.html">
-                                <img src="img/nante-ico.png" alt="">
+                                <img src="../img/nante-ico.png" alt="">
                             </a>
                         </div>
                     </div>
@@ -69,7 +69,7 @@
                                         <table>
                                             <tbody>
                                                 <tr>
-                                                    <td class="si-pic"><img src="img/select-product-1.jpg" alt=""></td>
+                                                    <td class="si-pic"><img src="../img/select-product-1.jpg" alt=""></td>
                                                     <td class="si-text">
                                                         <div class="product-selected">
                                                             <p>$60.00 x 1</p>
@@ -81,7 +81,7 @@
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <td class="si-pic"><img src="img/select-product-2.jpg" alt=""></td>
+                                                    <td class="si-pic"><img src="../img/select-product-2.jpg" alt=""></td>
                                                     <td class="si-text">
                                                         <div class="product-selected">
                                                             <p>$60.00 x 1</p>
@@ -129,8 +129,8 @@
                 </div>
                 <nav class="nav-menu mobile-menu">
                     <ul>
-                        <li class="active"><a href="./index.html">Home</a></li>
-                        <li><a href="./shop.html">Shop</a></li>
+                        <li class="active"><a href="./index.php">Home</a></li>
+                        <li><a href="./shop.php">Shop</a></li>
                         <li><a href="#">Collection</a>
                             <ul class="dropdown">
                                 <li><a href="#">Men's</a></li>
@@ -138,9 +138,9 @@
                                 <li><a href="#">Kid's</a></li>
                             </ul>
                         </li>
-                        <li><a href="./blog.html">Blog</a></li>
-                        <li><a href="./faq.html">FAQ</a></li>
-                        <li><a href="./contact.html">Contact</a></li>
+                        <li><a href="./blog.php">Blog</a></li>
+                        <li><a href="./faq.php">FAQ</a></li>
+                        <li><a href="./contact.php">Contact</a></li>
                     </ul>
                 </nav>
                 <div id="mobile-menu-wrap"></div>

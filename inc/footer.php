@@ -3,10 +3,8 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-3">
-                    <div class="footer-left">
-                        <div class="footer-logo">
-                            <a href="#"><img src="img/footer-logo.png" alt=""></a>
-                        </div>
+                    <div class="footer-left footer-widget">
+                        <h5>Address</h5>
                         <ul>
                             <li>Address: 1 University Avenue Berekuso</li>
                             <li>Phone: +233 24 503 1253</li>
@@ -74,16 +72,16 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
     <!-- Footer Section End -->
 
     <!-- Js Plugins -->
-    <script src="js/jquery-3.3.1.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/jquery-ui.min.js"></script>
-    <script src="js/jquery.countdown.min.js"></script>
-    <script src="js/jquery.nice-select.min.js"></script>
-    <script src="js/jquery.zoom.min.js"></script>
-    <script src="js/jquery.dd.min.js"></script>
-    <script src="js/jquery.slicknav.js"></script>
-    <script src="js/owl.carousel.min.js"></script>
-    <script src="js/main.js"></script>
+    <script src="../js/jquery-3.3.1.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <script src="../js/jquery-ui.min.js"></script>
+    <script src="../js/jquery.countdown.min.js"></script>
+    <script src="../js/jquery.nice-select.min.js"></script>
+    <script src="../js/jquery.zoom.min.js"></script>
+    <script src="../js/jquery.dd.min.js"></script>
+    <script src="../js/jquery.slicknav.js"></script>
+    <script src="../js/owl.carousel.min.js"></script>
+    <script src="../js/main.js"></script>
 </body>
 
 </html>
