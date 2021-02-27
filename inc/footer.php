@@ -8,9 +8,9 @@
                             <a href="#"><img src="img/footer-logo.png" alt=""></a>
                         </div>
                         <ul>
-                            <li>Address: 60-49 Road 11378 New York</li>
-                            <li>Phone: +65 11.188.888</li>
-                            <li>Email: hello.colorlib@gmail.com</li>
+                            <li>Address: 1 University Avenue Berekuso</li>
+                            <li>Phone: +233 24 503 1253</li>
+                            <li>Email: nantefootwears@gmail.com</li>
                         </ul>
                         <div class="footer-social">
                             <a href="#"><i class="fa fa-facebook"></i></a>
