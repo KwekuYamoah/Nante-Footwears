@@ -106,7 +106,7 @@ Checkout - Nante Footwear
                                     <li class="fw-normal">Subtotal <span>GHC{{ order.get_cart_total|floatformat:2 }}</span></li>
                                     <li class="total-price">Total <span>GHC{{ order.get_cart_total|floatformat:2 }}</span></li>
                                 </ul>
-                                <div class="payment-check">
+                                <!-- <div class="payment-check">
                                     <div class="pc-item">
                                         <label for="pc-check">
                                             Cheque Payment
@@ -121,7 +121,7 @@ Checkout - Nante Footwear
                                             <span class="checkmark"></span>
                                         </label>
                                     </div>
-                                </div>
+                                </div> -->
                                 <div class="order-btn">
                                     <button id="make-payment" type="submit" class="site-btn place-btn">Place Order</button>
                                 </div>
@@ -136,15 +136,13 @@ Checkout - Nante Footwear
 
     <script src="https://js.paystack.co/v1/inline.js"></script>
 
-    <script type="text/javascript">
-        console.log('{{user.email}}');
-    </script>
 
     <script type="text/javascript">
 
         var form = document.getElementById('checkout-form');
-        csrftoken = form.getElementsByTagName("input")[0].value;
+        //var csrftoken = form.getElementsByTagName("input")[0].value;
         var placeBtn = document.getElementById('make-payment');
+        console.log(csrftoken)
 
         var total = '{{ order.get_cart_total }}'
 
@@ -154,7 +152,6 @@ Checkout - Nante Footwear
 
         placeBtn.addEventListener('click', (e) => {
             e.preventDefault();
-
             makePayment();
         });
 
@@ -171,11 +168,15 @@ Checkout - Nante Footwear
                 email = '{{ user.email }}';
             }
 
+            console.log(name + ' ' + email + ' ' + total);
+
             var handler = PaystackPop.setup({
-                key:"{{ pk_public }}",
+                key: "{{ pk_public }}",
                 email: email,
-                amount: total,
-                currency: "GHC",
+                //amount: parseFloat('{{ order.get_cart_total }}'),
+                amount: total * 100,
+                currency: "GHS",
+                ref: "" + Math.floor(Math.random() * 1000000000 + 1),
 
                 metadata: {
                     custom_fields:[
@@ -206,6 +207,7 @@ Checkout - Nante Footwear
                     });
                 }
             });
+            handler.openIframe();
         }
 
         function submitFormData(){
