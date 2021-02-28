@@ -42,7 +42,8 @@ Checkout - Nante Footwear
     <!-- Shopping Cart Section Begin -->
     <section class="checkout-section spad">
         <div class="container">
-            <form action="#" class="checkout-form">
+            {% csrf_token %}
+            <form id="checkout-form" action="#" class="checkout-form">
                 <div class="row">
                     <div class="col-lg-6">
                         <div class="checkout-content">
@@ -50,44 +51,36 @@ Checkout - Nante Footwear
                         </div>
                         <h4>Biiling Details</h4>
                         <div class="row">
-                            <div class="col-lg-6">
-                                <label for="fir">First Name<span>*</span></label>
-                                <input type="text" id="fir">
+                            <div id="user-info" class="row">
+                                <div class="col-lg-6">
+                                    <label for="first">First Name<span>*</span></label>
+                                    <input type="text" id="first" name="first" required>
+                                </div>
+                                <div class="col-lg-6">
+                                    <label for="last">Last Name<span>*</span></label>
+                                    <input type="text" id="last" name="last" required>
+                                </div>
+                                <div class="col-lg-6">
+                                    <label for="email">Email Address<span>*</span></label>
+                                    <input type="text" id="email" name="email" required>
+                                </div>
+                                <div class="col-lg-6">
+                                    <label for="phone">Phone<span>*</span></label>
+                                    <input type="text" id="phone" name="phone" required>
+                                </div>
                             </div>
-                            <div class="col-lg-6">
-                                <label for="last">Last Name<span>*</span></label>
-                                <input type="text" id="last">
+
+                            <div id="address-info" class="row">
+                                <div class="col-lg-12">
+                                    <label for="street">Address<span>*</span></label>
+                                    <input type="text" id="street" class="street-first" name="street" required>
+                                </div>
+                                <div class="col-lg-12">
+                                    <label for="town">Town / City<span>*</span></label>
+                                    <input type="text" id="town" name="town" required>
+                                </div>
                             </div>
-                            <div class="col-lg-12">
-                                <label for="cun-name">Company Name</label>
-                                <input type="text" id="cun-name">
-                            </div>
-                            <div class="col-lg-12">
-                                <label for="cun">Country<span>*</span></label>
-                                <input type="text" id="cun">
-                            </div>
-                            <div class="col-lg-12">
-                                <label for="street">Street Address<span>*</span></label>
-                                <input type="text" id="street" class="street-first">
-                                <input type="text">
-                            </div>
-                            <div class="col-lg-12">
-                                <label for="zip">Postcode / ZIP (optional)</label>
-                                <input type="text" id="zip">
-                            </div>
-                            <div class="col-lg-12">
-                                <label for="town">Town / City<span>*</span></label>
-                                <input type="text" id="town">
-                            </div>
-                            <div class="col-lg-6">
-                                <label for="email">Email Address<span>*</span></label>
-                                <input type="text" id="email">
-                            </div>
-                            <div class="col-lg-6">
-                                <label for="phone">Phone<span>*</span></label>
-                                <input type="text" id="phone">
-                            </div>
-                            <div class="col-lg-12">
+                            <!-- <div class="col-lg-12">
                                 <div class="create-item">
                                     <label for="acc-create">
                                         Create an account?
@@ -95,7 +88,7 @@ Checkout - Nante Footwear
                                         <span class="checkmark"></span>
                                     </label>
                                 </div>
-                            </div>
+                            </div> -->
                         </div>
                     </div>
                     <div class="col-lg-6">
@@ -130,7 +123,7 @@ Checkout - Nante Footwear
                                     </div>
                                 </div>
                                 <div class="order-btn">
-                                    <button type="submit" class="site-btn place-btn">Place Order</button>
+                                    <button id="make-payment" type="submit" class="site-btn place-btn">Place Order</button>
                                 </div>
                             </div>
                         </div>
@@ -141,6 +134,128 @@ Checkout - Nante Footwear
     </section>
     <!-- Shopping Cart Section End -->
 
+    <script src="https://js.paystack.co/v1/inline.js"></script>
+
+    <script type="text/javascript">
+        console.log('{{user.email}}');
+    </script>
+
+    <script type="text/javascript">
+
+        var form = document.getElementById('checkout-form');
+        csrftoken = form.getElementsByTagName("input")[0].value;
+        var placeBtn = document.getElementById('make-payment');
+
+        var total = '{{ order.get_cart_total }}'
+
+        if(user != 'AnonymousUser'){
+            document.getElementById('user-info').innerHTML= '';
+        }
+
+        placeBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+
+            makePayment();
+        });
+
+        function makePayment(){
+            var name = '';
+            var email = '';
+            var total = parseFloat('{{ order.get_cart_total }}')
+            
+            if(user == 'AnonymousUser'){
+                name = form.first.value + ' ' + form.last.value;
+                email = form.email.value;
+            }else{
+                name = '{{ user.get_username }}';
+                email = '{{ user.email }}';
+            }
+
+            var handler = PaystackPop.setup({
+                key:"{{ pk_public }}",
+                email: email,
+                amount: total,
+                currency: "GHC",
+
+                metadata: {
+                    custom_fields:[
+                        {
+                            display_name: name,
+                            variable_name: name
+                        }
+                    ]
+                },
+                callback: (response) => {
+
+                    var referenceId = response.reference;
+
+                    $.ajax({
+                        type: "GET",
+                        url: '/verify/' + referenceId,
+                        beforeSend: function(){
+                            console.log('Sending req');
+                        },
+                        success: function (response){
+                            if(response[3].status == "success"){
+                                submitFormData();
+                            }
+                        },
+                        error: function(xhr, status, error){
+                            console.log(xhr, status, error);
+                        }
+                    });
+                }
+            });
+        }
+
+        function submitFormData(){
+          //alert('Form Data submitted');
+        //   if(form.first.value.length == 0 || form.last.value.length == 0 || form.email.value.length == 0)
+          var userFormData = {
+              'name': null,
+              'email': null,
+              'phone': null,
+              'total': total,
+          };
+
+          var shippingInfo = {
+              'street':null,
+              'town':null,
+          };
+
+          shippingInfo.street = form.street.value;
+          shippingInfo.town = form.town.value;
+
+          if(user == 'AnonymousUser'){
+              userFormData.name = form.first.value + ' ' + form.last.value;
+              userFormData.email = form.email.value;
+              userFormData.phone = form.phone.value;
+          }
+
+
+
+          var url = "/process_order/"
+
+          fetch(url, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRFToken': csrftoken,
+            },
+            body:JSON.stringify({'form':userFormData, 'shipping':shippingInfo}),
+          })
+          .then((response) => response.json())
+          .then((data) => {
+              console.log('Success:', data);
+              alert('Transaction completed');
+
+              cart = {}
+              document.cookie = 'cart=' + JSON.stringify(cart) + ';domain=;path=/'
+
+              window.location.href = "{% url 'shop' %}";
+          })
+        }
+    </script>
 
 
 

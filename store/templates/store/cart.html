@@ -22,6 +22,11 @@ Cart - Nante Footwear
 </ul>
 {% endblock menu %}
 
+{% block load %}
+
+{% endblock load%}
+
+
 {% block content %}
 
     <!-- Breadcrumb Section Begin -->
@@ -68,9 +73,12 @@ Cart - Nante Footwear
                                     <td class="p-price first-row">GHC{{ item.product.price|floatformat:2 }}</td>
                                     <td class="qua-col first-row">
                                         <div class="quantity">
-                                            <div class="pro-qty">
-                                                <input type="text" value="{{ item.quantity }}">
-                                            </div>
+                                            <p>{{ item.quantity }}</p>
+                                            <i data-product = {{item.product.id}} data-action = "add" class="fa fa-arrow-up update-cart" style="padding: 5px;"></i>
+                                            <i data-product = {{item.product.id}} data-action = "remove" class="fa fa-arrow-down update-cart" style="margin-top: 5px;"></i>
+                                            <!-- <div class="pro-qty">
+
+                                            </div> -->
                                         </div>
                                     </td>
                                     <td class="total-price first-row">GHC{{ item.get_total|floatformat:2 }}</td>
@@ -85,9 +93,12 @@ Cart - Nante Footwear
                                     <td class="p-price">GHC{{ item.product.price|floatformat:2 }}</td>
                                     <td class="qua-col">
                                         <div class="quantity">
-                                            <div class="pro-qty">
-                                                <input type="text" value="{{ item.quantity }}">
-                                            </div>
+                                            <p>{{ item.quantity }}</p>
+                                            <i data-product = {{item.product.id}} data-action = "add" class="fa fa-arrow-up update-cart" style="padding: 5px;"></i>
+                                            <i data-product = {{item.product.id}} data-action = "remove" class="fa fa-arrow-down update-cart" style="margin-top: 5px;"></i>
+                                            <!-- <div class="pro-qty">
+
+                                            </div> -->
                                         </div>
                                     </td>
                                     <td class="total-price">GHC{{ item.get_total|floatformat:2 }}</td>

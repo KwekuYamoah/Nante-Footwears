@@ -127,3 +127,6 @@ STATICFILES_DIRS = [
 ]
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'static/media')
+
+PAYSTACK_PUBLIC_KEY = 'lol_do_not_have_one'
+PAYSTACK_SECRET_KEY = 'hahahahaha_do_not_have_one'

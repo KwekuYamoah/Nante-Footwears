@@ -24,7 +24,7 @@ class Product(models.Model):
         ('K', 'Kids')
     )
     name = models.CharField(max_length=200)
-    price = models.FloatField()
+    price = models.DecimalField(max_digits=10, decimal_places=2)
     age = models.CharField(max_length=1, choices=AGES)
     category = models.ForeignKey(Categories, on_delete=models.SET_NULL, null=True)
     image = models.ImageField(null=True, blank=True)
