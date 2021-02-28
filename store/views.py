@@ -13,8 +13,9 @@ def index(request):
 
     data = cartData(request)
     cartItems = data['cartItems']
+    order = data['order']
 
-    context = {'cartItems': cartItems}
+    context = {'cartItems': cartItems, 'order': order}
     return render(request, 'store/index.html', context)
 
 def cart(request):
@@ -31,9 +32,10 @@ def shop(request):
 
     data = cartData(request)
     cartItems = data['cartItems']
+    order = data['order']
 
     products = Product.objects.all()
-    context = {'products': products, 'cartItems': cartItems}
+    context = {'products': products, 'cartItems': cartItems, 'order': order}
     return render(request, 'store/shop.html', context)
 
 def checkout(request):
@@ -50,24 +52,27 @@ def blog(request):
 
     data = cartData(request)
     cartItems = data['cartItems']
+    order = data['order']
 
-    context = {'cartItems': cartItems}
+    context = {'cartItems': cartItems, 'order': order}
     return render(request, 'store/blog.html', context)
 
 def faq(request):
 
     data = cartData(request)
     cartItems = data['cartItems']
+    order = data['order']
 
-    context = {'cartItems': cartItems}
+    context = {'cartItems': cartItems, 'order': order}
     return render(request, 'store/faq.html', context)
 
 def contact(request):
 
     data = cartData(request)
     cartItems = data['cartItems']
+    order = data['order']
 
-    context = {'cartItems': cartItems}
+    context = {'cartItems': cartItems, 'order': order}
     return render(request, 'store/contact.html', context)
 
 def updateItem(request):
