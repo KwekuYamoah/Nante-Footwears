@@ -124,13 +124,13 @@ ol {
 }
 
 .section-title .product-price span {
-	font-size: 16px;
+	font-size: 22px;
 	font-weight: 400;
-	color: #636363;
+	color: #fff;
 }
 
 .section-title h2 {
-	color: #252525;
+	color: #fff;
 	font-size: 36px;
 	font-weight: 700;
 	margin-bottom: 38px;
@@ -150,7 +150,8 @@ ol {
 }
 
 .section-title p {
-	color: #6e6e6e;
+	color: #fcf8f8;
+	font-size: 120%;
 }
 
 .set-bg {
@@ -822,7 +823,7 @@ ol {
 
 .hero-items .single-hero-items span {
 	color: #e7ab3c;
-	font-size: 12px;
+	font-size: 18px;
 	font-weight: 700;
 	letter-spacing: 2px;
 	text-transform: uppercase;
@@ -834,13 +835,18 @@ ol {
 }
 
 .hero-items .single-hero-items h1 {
-	color: #252525;
+	color: #f8f6f6;
 	font-size: 72px;
 	font-weight: 700;
 	margin-bottom: 6px;
 	position: relative;
 	top: 50px;
 	opacity: 0;
+}
+
+.hero-items .single-hero-items p {
+	color: whitesmoke;
+	font-size: large;
 }
 
 .hero-items .single-hero-items p {
@@ -1275,6 +1281,9 @@ ol {
 	padding-bottom: 80px;
 	margin-left: 65px;
 	margin-right: 65px;
+	
+	
+
 }
 
 .countdown-timer {
